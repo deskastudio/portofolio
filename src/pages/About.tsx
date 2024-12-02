@@ -15,7 +15,7 @@ const About: React.FC = () => {
         {/* Gambar */}
         <div className="flex justify-center">
           <img
-            src="/assets/img/profile.jpg"  // Perbaikan path gambar
+            src="/assets/img/profile.jpg"
             alt="Profile"
             className="w-64 h-64 object-cover rounded-full shadow-lg border-4 border-white dark:border-gray-700"
           />
