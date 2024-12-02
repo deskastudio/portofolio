@@ -1,38 +1,31 @@
-name: CI for React App Deska
+name: CI/CD for React App Deska Mulyana
 
 on:
   push:
     branches:
-      - main
+      - master
+
   pull_request:
     branches:
-      - main
+      - master
+
 
 jobs:
-  build:
-    runs-on: ubuntu-latest  # Menjalankan di sistem Ubuntu
+  build-and-test:
+    runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '16'  # Versi Node.js sesuai dengan kebutuhan proyek
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20.x'  
+          cache: 'npm'
 
-    - name: Install dependencies
-      run: |
-        npm install  # Install dependencies dengan npm
+      - name: Install dependencies
+        run: npm ci
 
-    - name: Run tests
-      run: |
-        npm test -- --ci --reporters=default --reporters=jest-stare  # Perintah untuk menjalankan test Jest
-      env:
-        CI: true  # Menjamin bahwa environment testing berjalan pada mode CI
-
-    - name: Upload coverage results
-      uses: actions/upload-artifact@v2
-      with:
-        name: coverage-report
-        path: ./coverage  # Path tempat hasil coverage Jest disimpan
+      - name: Run tests
+        run: npm run test:verbose
