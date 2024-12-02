@@ -30,6 +30,8 @@ describe('Layout Component', () => {
     expect(content).toBeInTheDocument();
   });
 
+  
+
   test('applies dark background in dark mode', () => {
     render(
       <Layout>
