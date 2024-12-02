@@ -1,0 +1,38 @@
+name: CI for React App Deska
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # Menjalankan di sistem Ubuntu
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16'  # Versi Node.js sesuai dengan kebutuhan proyek
+
+    - name: Install dependencies
+      run: |
+        npm install  # Install dependencies dengan npm
+
+    - name: Run tests
+      run: |
+        npm test -- --ci --reporters=default --reporters=jest-stare  # Perintah untuk menjalankan test Jest
+      env:
+        CI: true  # Menjamin bahwa environment testing berjalan pada mode CI
+
+    - name: Upload coverage results
+      uses: actions/upload-artifact@v2
+      with:
+        name: coverage-report
+        path: ./coverage  # Path tempat hasil coverage Jest disimpan

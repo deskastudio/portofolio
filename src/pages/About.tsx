@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 const About: React.FC = () => {
   return (
     <motion.div
+      data-testid="motion-div" // Menambahkan test id di sini
       className="mt-10 max-w-5xl mx-auto bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 dark:from-gray-800 dark:to-gray-900 p-8 rounded-lg shadow-2xl text-white transition-colors duration-500"
       initial={{ opacity: 0, y: -50 }}
       animate={{ opacity: 1, y: 0 }}
@@ -14,7 +15,7 @@ const About: React.FC = () => {
         {/* Gambar */}
         <div className="flex justify-center">
           <img
-            src="./src/assets/img/profile.jpg"
+            src="/assets/img/profile.jpg"  // Perbaikan path gambar
             alt="Profile"
             className="w-64 h-64 object-cover rounded-full shadow-lg border-4 border-white dark:border-gray-700"
           />

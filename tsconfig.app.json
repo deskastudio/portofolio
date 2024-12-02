@@ -14,8 +14,12 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "incremental": true, // Tambahkan ini jika menggunakan tsBuildInfoFile
-    "baseUrl": "./src", // Opsional, untuk mempermudah impor
+    "incremental": true,
+    "baseUrl": "./src",
+    "types": ["jest"],
+    "paths": {
+      "components/*": ["./components/*"]  // Menambahkan path alias
+    }
   },
   "include": ["src"],
   "exclude": ["node_modules"]
